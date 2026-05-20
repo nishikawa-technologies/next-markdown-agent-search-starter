@@ -1,0 +1,30 @@
+{
+  "RootLayout": {
+    "home_link": "ホーム",
+    "news_link": "ニュース",
+    "company_link": "会社概要",
+    "leadership_link": "リーダーシップ",
+    "products_link": "プロダクト",
+    "solutions_link": "ソリューション",
+    "contact_link": "お問い合わせ",
+    "privacy_policy_link": "プライバシーポリシー"
+  },
+  "BaseTemplate": {
+    "description": "Next.js と Markdown でつくるコーポレートサイトのサンプル"
+  },
+  "News": {
+    "list_title": "ニュース",
+    "list_description": "会社からのお知らせです（サンプル文言）。",
+    "recent_heading": "最新のニュース",
+    "view_all": "すべて見る",
+    "back_to_list": "← ニュース一覧",
+    "empty": "まだニュースはありません。"
+  },
+  "Financials": {
+    "section_heading": "財務情報",
+    "section_intro": "当社の財務基盤について、各決算期の貸借対照表（主要項目）を掲載しています。",
+    "view_balance_sheet": "B/S を見る",
+    "back_to_company": "← 会社概要",
+    "disclaimer": "※ 掲載数値は社内帳簿に基づく簡易表示です。投資勧誘を目的とするものではありません。"
+  }
+}

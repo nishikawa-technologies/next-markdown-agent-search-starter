@@ -1,0 +1,15 @@
+---
+description: Project context for Sazanami
+alwaysApply: true
+---
+
+# Sazanami Project Context
+
+- Sazanami is a Next.js 15 Markdown corporate-site starter.
+- Content lives in `content/{locale}/` and supports `ja` / `en`.
+- UI messages live in `src/locales/*.json` and use `next-intl`.
+- The app uses layered directories: `domain`, `application`, `infrastructure`, `presentation`, and `app`.
+- Build generates `public/agent-search-index.json` for `POST /api/agent/search`.
+- README files: `README.md` (English) and `README.ja.md` (Japanese).
+- Use Node.js 24.
+- CI targets `main`.

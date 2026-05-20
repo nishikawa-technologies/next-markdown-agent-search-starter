@@ -1,0 +1,30 @@
+{
+  "RootLayout": {
+    "home_link": "Home",
+    "news_link": "News",
+    "company_link": "Company",
+    "leadership_link": "Leadership",
+    "products_link": "Products",
+    "solutions_link": "Solutions",
+    "contact_link": "Contact",
+    "privacy_policy_link": "Privacy Policy"
+  },
+  "BaseTemplate": {
+    "description": "A sample corporate site built with Next.js and Markdown."
+  },
+  "News": {
+    "list_title": "News",
+    "list_description": "Company updates (sample placeholder text).",
+    "recent_heading": "Latest news",
+    "view_all": "View all",
+    "back_to_list": "← All news",
+    "empty": "No news articles yet."
+  },
+  "Financials": {
+    "section_heading": "Financial information",
+    "section_intro": "Summary balance sheet figures for each fiscal period are published below.",
+    "view_balance_sheet": "View B/S",
+    "back_to_company": "← Company",
+    "disclaimer": "Figures are simplified extracts from our books. This is not investment solicitation."
+  }
+}

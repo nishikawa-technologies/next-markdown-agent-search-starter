@@ -1,0 +1,151 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-surface: #020617;
+  --color-surface-raised: #0f172a;
+  --color-border-subtle: rgb(148 163 184 / 0.12);
+  --color-accent: #22d3ee;
+  --color-accent-muted: #0891b2;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+}
+
+body {
+  @apply font-sans antialiased;
+  color: #cbd5e1;
+  background-color: var(--color-surface);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgb(34 211 238 / 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgb(99 102 241 / 0.08), transparent),
+    linear-gradient(to bottom, transparent, var(--color-surface)),
+    linear-gradient(to right, rgb(148 163 184 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(148 163 184 / 0.04) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    48px 48px,
+    48px 48px;
+  background-attachment: fixed;
+}
+
+::selection {
+  background-color: rgb(34 211 238 / 0.25);
+  color: #f8fafc;
+}
+
+.markdown-tech h1 {
+  @apply text-3xl font-bold tracking-tight text-white sm:text-4xl;
+  background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 45%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.markdown-tech h2 {
+  @apply mt-10 text-xl font-semibold tracking-tight text-white sm:text-2xl;
+}
+
+.markdown-tech h2::before {
+  content: '//';
+  @apply mr-2 font-mono text-sm font-normal text-cyan-400/80;
+}
+
+.markdown-tech h3 {
+  @apply mt-8 text-lg font-medium text-slate-100;
+}
+
+.markdown-tech p {
+  @apply mt-4 text-base leading-relaxed text-slate-300;
+}
+
+.markdown-tech ul {
+  @apply mt-4 list-inside list-disc space-y-2 text-slate-300;
+}
+
+.markdown-tech ol {
+  @apply mt-4 list-inside list-decimal space-y-2 text-slate-300;
+}
+
+.markdown-tech a {
+  @apply text-cyan-400 underline decoration-cyan-400/30 underline-offset-4 transition-colors hover:text-cyan-300 hover:decoration-cyan-300/50;
+}
+
+.markdown-tech table {
+  @apply mt-8 w-full overflow-hidden rounded-xl border border-white/10 bg-slate-900/50 text-sm backdrop-blur-sm;
+}
+
+.markdown-tech tbody tr {
+  @apply border-b border-white/10 transition-colors last:border-b-0 hover:bg-cyan-400/5;
+}
+
+.markdown-tech td {
+  @apply px-4 py-3.5 align-top text-slate-300;
+}
+
+.markdown-tech td:first-child {
+  @apply w-0 whitespace-nowrap font-medium text-slate-100;
+}
+
+.markdown-tech strong {
+  @apply font-semibold text-slate-100;
+}
+
+/* 貸借対照表：GFM 4列表を左（資産）・右（負債・純資産）に見せる */
+.financial-markdown table {
+  @apply mt-6 w-full min-w-[36rem] table-fixed border-collapse;
+}
+
+.financial-markdown th {
+  @apply border border-white/10 bg-slate-950/60 px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-cyan-400/90;
+}
+
+.financial-markdown th:nth-child(2),
+.financial-markdown th:nth-child(4) {
+  @apply w-28 text-right;
+}
+
+.financial-markdown tbody tr {
+  @apply border-b border-white/10;
+}
+
+.financial-markdown td {
+  @apply border border-white/10 px-3 py-2.5 align-top text-slate-300;
+}
+
+.financial-markdown td:nth-child(1),
+.financial-markdown td:nth-child(3) {
+  @apply font-medium text-slate-100;
+}
+
+.financial-markdown td:nth-child(2) {
+  @apply border-r-2 border-r-cyan-400/25 text-right font-mono tabular-nums text-slate-100;
+}
+
+.financial-markdown td:nth-child(4) {
+  @apply text-right font-mono tabular-nums text-slate-100;
+}
+
+/* 表内セクション見出し行（左2列空・3列目に strong なし）→ thead と同じシアン見出し */
+.financial-markdown
+  tbody
+  tr:has(> td:first-child:empty):has(> td:nth-child(2):empty):not(:has(td:nth-child(3) strong))
+  > td:nth-child(3),
+.financial-markdown
+  tbody
+  tr:has(> td:first-child:empty):has(> td:nth-child(2):empty):not(:has(td:nth-child(3) strong))
+  > td:nth-child(4) {
+  @apply border border-white/10 bg-slate-950/60 px-3 py-2 align-top text-xs font-semibold uppercase tracking-wide text-cyan-400/90;
+  font-family: inherit;
+  font-variant-numeric: normal;
+}
+
+.financial-markdown
+  tbody
+  tr:has(> td:first-child:empty):has(> td:nth-child(2):empty):not(:has(td:nth-child(3) strong))
+  > td:nth-child(4) {
+  @apply w-28 text-right;
+}
+
+.financial-markdown .overflow-x-auto {
+  @apply -mx-1 overflow-x-auto px-1;
+}

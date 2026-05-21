@@ -7,6 +7,7 @@ import { financialStatementRepository } from '@/infrastructure/financials/financ
 import { newsArticleRepository } from '@/infrastructure/news/newsModule';
 import { SITE_PAGE_SLUGS } from '@/presentation/content/sitePages';
 import { newsListPath } from '@/presentation/news/newsPaths';
+import { agentDiscoveryPaths } from '@/utils/agentDiscovery';
 import { AppConfig } from '@/utils/AppConfig';
 import { getBaseUrl } from '@/utils/Helpers';
 
@@ -53,9 +54,49 @@ async function newsIndexLastModified(localeCode: string): Promise<Date> {
   }
 }
 
+async function agentIndexLastModified(): Promise<Date> {
+  const indexPath = path.join(process.cwd(), 'public', 'agent-search-index.json');
+
+  try {
+    const raw = await fs.readFile(indexPath, 'utf8');
+    const parsed = JSON.parse(raw) as { generatedAt?: string };
+
+    if (parsed.generatedAt) {
+      return new Date(parsed.generatedAt);
+    }
+  }
+  catch {
+    // index may be missing until prebuild
+  }
+
+  return new Date();
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getBaseUrl();
   const entries: MetadataRoute.Sitemap = [];
+  const indexLastMod = await agentIndexLastModified();
+
+  entries.push(
+    {
+      url: `${baseUrl}${agentDiscoveryPaths.llmsTxt}`,
+      lastModified: indexLastMod,
+      changeFrequency: 'weekly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}${agentDiscoveryPaths.knowledgeSpec}`,
+      lastModified: indexLastMod,
+      changeFrequency: 'monthly',
+      priority: 0.35,
+    },
+    {
+      url: `${baseUrl}${agentDiscoveryPaths.knowledgeIndex}`,
+      lastModified: indexLastMod,
+      changeFrequency: 'weekly',
+      priority: 0.4,
+    },
+  );
 
   for (const localeCode of AppConfig.locales) {
     const localePrefix = localeCode === AppConfig.defaultLocale ? '' : `/${localeCode}`;

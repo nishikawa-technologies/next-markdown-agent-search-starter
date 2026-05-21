@@ -22,6 +22,7 @@ The search layer is intentionally modest. It is not a replacement for Algolia, E
 - **Built-in i18n**: `next-intl` powers Japanese and English routes with `as-needed` locale prefixes.
 - **Build-time search index**: `npm run build` runs `generate:agent-search-index` and writes `public/agent-search-index.json` from the Markdown content.
 - **Agent search API**: `POST /api/agent/search` returns `{ sourceKind, path, title, description, snippet }` hits using simple token scoring.
+- **Agent discovery**: `/llms.txt` and `/SPEC.md` explain the site and the generated index to LLMs, crawlers, and integration agents.
 - **Layered architecture**: domain, application, infrastructure, and presentation code are separated enough to be easy to inspect and extend.
 - **SEO basics**: canonical URLs, `hreflang`, Open Graph metadata, sitemap, robots, and Organization JSON-LD are included.
 - **Deploy-ready defaults**: Vercel-friendly scripts, GitHub Actions CI on `main`, Node 24, ESLint, Vitest, and TypeScript checks.
@@ -82,6 +83,16 @@ Sazanami generates a compact index from Markdown at build time, then serves read
 | Auth | `Authorization: Bearer <key>` or `X-API-Key: <key>` when `AGENT_SEARCH_API_KEY` is set |
 
 In production, if `AGENT_SEARCH_API_KEY` is not set, the API returns `401`. In non-production environments, missing keys are allowed for local testing.
+
+## Agent Discovery
+
+Sazanami also exposes discovery resources for LLMs, crawlers, and integration agents:
+
+- **`/llms.txt`** — a concise guide to the site, the knowledge index, and the search API.
+- **`/SPEC.md`** — the schema and HTTP contract for `agent-search-index.json` and `POST /api/agent/search`.
+- **`/agent-search-index.json`** — the generated site knowledge index.
+
+These resources are linked from the document head and included in `sitemap.xml`.
 
 ## Environment Variables
 

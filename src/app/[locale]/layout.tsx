@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { AgentDiscoveryHeadLinks } from '@/components/AgentDiscoveryHeadLinks';
 import { OrganizationJsonLd } from '@/components/OrganizationJsonLd';
 import { routing } from '@/libs/I18nRouting';
 import { notoSansJp } from '@/styles/fonts';
@@ -64,6 +65,9 @@ export default async function RootLayout(props: {
 
   return (
     <html lang={locale} className={notoSansJp.className}>
+      <head>
+        <AgentDiscoveryHeadLinks />
+      </head>
       <body>
         <OrganizationJsonLd />
         <NextIntlClientProvider>

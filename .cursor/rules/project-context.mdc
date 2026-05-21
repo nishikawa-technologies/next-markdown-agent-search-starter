@@ -10,6 +10,7 @@ alwaysApply: true
 - UI messages live in `src/locales/*.json` and use `next-intl`.
 - The app uses layered directories: `domain`, `application`, `infrastructure`, `presentation`, and `app`.
 - Build generates `public/agent-search-index.json` for `POST /api/agent/search`.
+- Agent discovery resources live at `/llms.txt`, `/SPEC.md`, and `/agent-search-index.json`.
 - README files: `README.md` (English) and `README.ja.md` (Japanese).
 - Use Node.js 24.
 - CI targets `main`.

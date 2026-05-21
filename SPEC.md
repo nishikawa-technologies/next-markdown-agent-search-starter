@@ -107,7 +107,7 @@ Note: the real index includes every configured locale and all pages, news articl
 }
 ```
 
-Request body: `{ "q": string, "locale"?: "ja" | "en", "limit"?: number }` (limit 1–50, default 10).
+Request body: `{ "q": string, "locale"?: "ja" | "en", "limit"?: number }` (limit 1–50, default 10). The maximum `q` length defaults to 300 characters and can be configured with `AGENT_SEARCH_MAX_QUERY_LENGTH`.
 
 Production requires `AGENT_SEARCH_API_KEY`; requests must send `Authorization: Bearer <AGENT_SEARCH_API_KEY>` or `X-API-Key: <AGENT_SEARCH_API_KEY>`. In non-production, the API allows unauthenticated requests when the env var is unset.
 

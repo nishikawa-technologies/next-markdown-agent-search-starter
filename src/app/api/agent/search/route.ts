@@ -2,7 +2,10 @@ import type { NextRequest } from 'next/server';
 import process from 'node:process';
 
 import { NextResponse } from 'next/server';
-import { InvalidAgentSearchQueryError } from '@/domain/agent-search/value-objects/AgentSearchQuery';
+import {
+  AgentSearchQuery,
+  InvalidAgentSearchQueryError,
+} from '@/domain/agent-search/value-objects/AgentSearchQuery';
 import { Locale } from '@/domain/content/value-objects/Locale';
 import { searchKnowledgeForAgentUseCase } from '@/infrastructure/agent-search/agentSearchModule';
 
@@ -21,6 +24,26 @@ function isAuthorized(request: NextRequest): boolean {
   const headerKey = request.headers.get('x-api-key');
 
   return bearer === key || headerKey === key;
+}
+
+function maxQueryLengthFromEnv(): number {
+  const raw = process.env.AGENT_SEARCH_MAX_QUERY_LENGTH;
+
+  if (!raw) {
+    return AgentSearchQuery.defaultMaxQueryLength;
+  }
+
+  const parsed = Number.parseInt(raw, 10);
+
+  if (!Number.isInteger(parsed) || parsed < 1) {
+    console.warn(
+      '[agent-search] Ignoring invalid AGENT_SEARCH_MAX_QUERY_LENGTH; using default',
+    );
+
+    return AgentSearchQuery.defaultMaxQueryLength;
+  }
+
+  return parsed;
 }
 
 export async function POST(request: NextRequest) {
@@ -71,6 +94,7 @@ export async function POST(request: NextRequest) {
       q,
       locale,
       limit: limitRaw,
+      maxQueryLength: maxQueryLengthFromEnv(),
     });
 
     return NextResponse.json({

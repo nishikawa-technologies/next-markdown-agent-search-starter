@@ -7,6 +7,7 @@ interface SearchKnowledgeForAgentQuery {
   q: string;
   locale: Locale;
   limit?: number;
+  maxQueryLength?: number;
 }
 
 export class SearchKnowledgeForAgentUseCase {
@@ -17,6 +18,7 @@ export class SearchKnowledgeForAgentUseCase {
       q: input.q,
       locale: input.locale,
       limit: input.limit,
+      maxQueryLength: input.maxQueryLength,
     });
 
     return this.repository.search(query);

@@ -93,7 +93,7 @@ Sazanami generates a compact index from Markdown at build time, then serves read
 | Item | Detail |
 | --- | --- |
 | Endpoint | `POST /api/agent/search` |
-| Body | `q` (required), `locale` (optional, default `ja`), `limit` (optional, 1–50) |
+| Body | `q` (required, max 300 chars by default), `locale` (optional, default `ja`), `limit` (optional, 1–50) |
 | Response | `{ hits: [{ sourceKind, path, title, description, snippet }] }` |
 | Auth | `Authorization: Bearer <key>` or `X-API-Key: <key>` when `AGENT_SEARCH_API_KEY` is set |
 
@@ -116,6 +116,7 @@ See `.env.example`.
 - **`NEXT_PUBLIC_APP_URL`** — Canonical site origin (`https://…`) for `metadataBase`, canonical, and Open Graph URLs. Invalid values are ignored with a fallback to Vercel environment URLs.
 - **`NEXT_PUBLIC_CONTACT_FORM_EMBED_URL`** — Embed URL for the contact page, such as a Google Forms `embedded=true` URL. If unset, a placeholder panel is shown.
 - **`AGENT_SEARCH_API_KEY`** — Optional API key for `POST /api/agent/search`.
+- **`AGENT_SEARCH_MAX_QUERY_LENGTH`** — Optional maximum length for search `q` (default: `300`).
 
 ## Project Structure
 

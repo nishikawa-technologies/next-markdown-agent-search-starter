@@ -37,4 +37,21 @@ describe('searchKnowledgeForAgentUseCase', () => {
     expect(result.hits.length).toBe(1);
     expect(result.hits[0]?.path).toBe('/company/');
   });
+
+  it('passes query length constraints to domain query creation', async () => {
+    const repository: SearchableContentRepository = {
+      async search(_query: AgentSearchQuery): Promise<AgentSearchResult> {
+        return AgentSearchResult.empty();
+      },
+    };
+    const useCase = new SearchKnowledgeForAgentUseCase(repository);
+
+    await expect(
+      useCase.execute({
+        q: 'abcd',
+        locale: Locale.create('ja'),
+        maxQueryLength: 3,
+      }),
+    ).rejects.toThrow('q must be 3 characters or fewer');
+  });
 });

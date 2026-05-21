@@ -25,4 +25,16 @@ describe('agentSearchQuery', () => {
       InvalidAgentSearchQueryError,
     );
   });
+
+  it('rejects too long query', () => {
+    const locale = Locale.create('ja');
+
+    expect(() =>
+      AgentSearchQuery.create({
+        q: 'x'.repeat(4),
+        locale,
+        maxQueryLength: 3,
+      }),
+    ).toThrow(InvalidAgentSearchQueryError);
+  });
 });

@@ -4,6 +4,16 @@
 
 **A corporate site starter that publishes itself for humans and agents.**
 
+Demo: [https://next-markdown-agent-search-starter.vercel.app](https://next-markdown-agent-search-starter.vercel.app)
+
+Try the discovery resources:
+
+- [`/llms.txt`](https://next-markdown-agent-search-starter.vercel.app/llms.txt)
+- [`/SPEC.md`](https://next-markdown-agent-search-starter.vercel.app/SPEC.md)
+- [`/agent-search-index.json`](https://next-markdown-agent-search-starter.vercel.app/agent-search-index.json)
+
+The public demo exposes the static discovery resources above. `POST /api/agent/search` requires an API key by default.
+
 Sazanami is a **Next.js corporate-site starter** for content-heavy small sites that want one extra thing: a thin, build-time search layer that agents and internal tools can pull from.
 
 Next.js + Markdown + i18n, with `llms.txt`, a build-time knowledge index, and a read-only agent search API.

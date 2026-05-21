@@ -4,6 +4,16 @@
 
 **人にもエージェントにも読めるコーポレートサイトスターター。**
 
+デモ: [https://next-markdown-agent-search-starter.vercel.app](https://next-markdown-agent-search-starter.vercel.app)
+
+確認できる discovery resource:
+
+- [`/llms.txt`](https://next-markdown-agent-search-starter.vercel.app/llms.txt)
+- [`/SPEC.md`](https://next-markdown-agent-search-starter.vercel.app/SPEC.md)
+- [`/agent-search-index.json`](https://next-markdown-agent-search-starter.vercel.app/agent-search-index.json)
+
+公開デモでは上記の静的 discovery resource を確認できます。`POST /api/agent/search` は既定で API キーを必要とします。
+
 Sazanami は、コンテンツ量のある小規模なコーポレートサイト向けの **Next.js スターター**です。特徴は、Markdown サイトに **薄い検索レイヤー**を足していることです。AI エージェント、社内ツール、ヘルプウィジェットなどが、公開サイトのコンテンツを Pull 型で取得できます。
 
 Next.js + Markdown + i18n に、`llms.txt`、ビルド時生成の知識インデックス、読み取り専用のエージェント検索 API を組み合わせています。

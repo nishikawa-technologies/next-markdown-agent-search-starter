@@ -2,9 +2,24 @@
 
 [English](README.md) | **日本語**
 
+**人にもエージェントにも読めるコーポレートサイトスターター。**
+
 Sazanami は、コンテンツ量のある小規模なコーポレートサイト向けの **Next.js スターター**です。特徴は、Markdown サイトに **薄い検索レイヤー**を足していることです。AI エージェント、社内ツール、ヘルプウィジェットなどが、公開サイトのコンテンツを Pull 型で取得できます。
 
+Next.js + Markdown + i18n に、`llms.txt`、ビルド時生成の知識インデックス、読み取り専用のエージェント検索 API を組み合わせています。
+
 サイト本体は静的配信しやすいままです。`content/` 以下の Markdown がページ、ローカライズされたルート、SEO メタデータ、検索用 JSON インデックスになります。実行時の `POST /api/agent/search` は、その JSON インデックスを読み、軽量な検索結果を返します。検索サービス、クローラー、データベースは不要です。
+
+```mermaid
+flowchart LR
+  Content["content/*.md"] --> Build["npm run build"]
+  Build --> Pages["Static pages + SEO"]
+  Build --> Index["public/agent-search-index.json"]
+  Index --> Llms["/llms.txt + /SPEC.md"]
+  Index --> Search["POST /api/agent/search"]
+  Llms --> Agents["LLMs / crawlers / agents"]
+  Search --> Agents
+```
 
 リポジトリの package 名は `next-markdown-agent-search-starter`、スターター名は **Sazanami** です。
 
